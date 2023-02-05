@@ -1,0 +1,36 @@
+<p>directivess works!</p>
+<h1>{{postArray}}</h1>>
+<ul>
+    <li>{{postArray[0]}}</li>
+    <li>{{postArray[1]}}</li>
+    <li>{{postArray[2]}}</li>
+    <li>{{postArray[3]}}</li>
+    <li>{{postArray[4]}}</li>
+</ul>
+<ul>
+    <li *ngFor="let post of postArray">{{post}}</li>
+</ul>
+<button (click)="addNew()">Add new Data</button>
+<ul>
+    <li *ngFor="let posts of objArray">{{posts.postTitle}}
+        <button (click)="onDelete(post)">Delete</button>
+    </li>
+    <div *ngIf="objArray.length>0">
+        
+    <li *ngFor="let posts of objArray">{{posts.postTitle}}
+        <button (click)="onDelete(post)">Delete</button>
+    </li>
+    </div>
+    <div *ngIf="objArray.length==0">
+        <p>There is no Data</p>
+    </div>
+</ul>
+<div>
+    <button (click)="onClick('step 1')">step 1</button><button>step 2</button><button>step 3</button>
+</div>
+<div *ngIf="stepForm=='step 1'">Step 1 Form</div>
+<div *ngFor='let post of pos;let index= index'>
+    <h1>{{post.title}}</h1>
+    <button [routerLink]="['/post',index,post.title]">View Content</button>
+    
+</div>

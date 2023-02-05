@@ -1,0 +1,9 @@
+.form-area,
+.preview-area{
+    margin-top: 50px;
+    text-align: center;
+}
+.add-background{
+    background-color: red;
+    padding: 10px;
+}

@@ -1,0 +1,38 @@
+<p>post works!</p>
+<app-post-list [fromPostParent]='postParentMessage'></app-post-list>
+<button (click)='sendMessage()'>Click</button>
+<div class="form-area">
+    <h1>Post Form</h1>
+    <br><br>
+    <input type="text" placeholder="Post-title" [(ngModel)]="postTitle">
+    <br><br>
+
+    <textarea cols="30" rows="10" placeholder="Post-Detail" [(ngModel)]="postDetail">
+     </textarea>
+    <br><br>
+
+     <input type="text" placeholder="Post Image URL" [(ngModel)]="imageURL">
+    <br><br>
+
+     <input type="text" placeholder="Post URL" [(ngModel)]="postURL">
+    <br><br>
+
+     <input type="checkBox" [(ngModel)]="addBackground"> Add BackGround
+    <br><br>
+
+</div>
+<div class="preview-area">
+    <img [src]="imageURL" alt="">
+<h1> <span [class.add-background]="addBackground"  >{{postTitle}}</span></h1>
+<p>{{postDetail}}</p>  
+<a [href]="postURL" target="_blank" [style.display]="postURL ? 'block' : 'none' ">More Details</a>  
+</div>
+<button (click)="addNewData()">Save</button>
+<div>
+    <H1>Hi kartik</H1>
+    <ul>
+        <li *ngFor="let post of posts">
+            {{post.PostTitle}}
+        </li>
+    </ul>
+</div>

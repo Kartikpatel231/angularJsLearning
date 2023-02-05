@@ -1,0 +1,117 @@
+<h1>BootStapForm</h1>
+<div class="container mt-5">
+    <div class="form-area">
+        <form #f='ngForm' (submit)="onSubmit(f)">
+            <div class="form-group">
+                <label>First Name</label>
+                <input type="text" placeholder="fullName" class="form-control" name="fullName" ngModel
+                    #fullName='ngModel' (change)="getValue(fullName)" required
+                    [ngClass]="{'is-invalid':fullName.touched && fullName.invalid}" minlength="5" maxlength="20">
+                <div *ngIf="fullName.errors?.required">
+                    <div class="alert alert-danger" *ngIf='fullName.touched && fullName.invalid'>Full Name is
+                        required...</div>
+                </div>
+                <div *ngIf="fullName.errors?.minlength">
+                    <div class="alert alert-danger" *ngIf='fullName.touched && fullName.invalid'>Full Name is must be
+                        five charater long....</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>email</label>
+                <input type="email" placeholder="email" class="form-control" name="email" ngModel #email='ngModel'
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required
+                    [ngClass]="{'is-invalid':email.touched && email.invalid}">
+                <div *ngIf="email.errors?.required">
+                    <div class="alert alert-danger" *ngIf='email.touched && email.invalid'>email is required...
+                    </div>
+                </div>
+                <div *ngIf="email.errors?.pattern">
+                    <div class="alert alert-danger" *ngIf='email.touched && email.invalid'>Invalid email
+                        address....</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <textarea cols="30" rows="10" placeholder="address" class="form-control" name="address" ngModel
+                    #address='ngModel' required
+                    [ngClass]="{'is-invalid':address.touched && address.invalid}"></textarea>
+                <div *ngIf="address.errors?.required">
+                    <div class="alert alert-danger" *ngIf='address.touched && address.invalid'>address is required...
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-light" [disabled]="f.invalid">Submit</button>
+        </form>
+    </div>
+</div>
+
+<!--Reactive Form Method in Anguler-->
+<h1>Reactive Form Name</h1>
+<form [formGroup]='form' (ngSubmit)="onSubmit1()">
+    <div class="form-group">
+        <label>First Name</label>
+        <input type="text" placeholder="fullName" class="form-control" name="fullName" formControlName='fullName'>
+        <div class="alert alert-danger" *ngIf="fullname.touched && fullname.invalid">
+            <div *ngIf="fullname.errors?.required">The full name is required...</div>
+            <div *ngIf="fullname.errors?.minlength">The name is alteast 5 letters...</div>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label>email</label>
+        <input type="email" placeholder="email" class="form-control" name="email" formControlName='email'>
+
+        <div class="alert alert-danger" *ngIf="Email.touched && Email.invalid">
+            <div *ngIf="Email.errors?.required">email is required</div>
+            <div *ngIf="Email.errors?.pattern">email is incorrect</div>
+
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Address</label>
+        <textarea cols="30" rows="10" placeholder="address" class="form-control" name="address"
+            formControlName='address'></textarea>
+
+        <div class="alert alert-danger" *ngIf="Address.touched && Address.invalid">
+            <div *ngIf="Address.errors?.required">address is required...</div>
+
+        </div>
+    </div>
+    <div formGroupName='contactDetails'>
+        <div class="form-group">
+            <label>ContacNo</label>
+            <input type="text" placeholder="Contact No" class="form-control" name="contactNo"
+                formControlName='contactNo'>
+
+            <div class="alert alert-danger" *ngIf="ContactNo.touched && ContactNo.invalid">
+                <div *ngIf="ContactNo.errors?.required">contact is required...</div>
+                <div *ngIf="ContactNo.errors?.pattern">contact is invalid...</div>
+
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Shipping Address</label>
+            <input type="text" placeholder="Shipping Address" class="form-control" name="shippingAddress"
+                formControlName='shippingAddress'>
+
+            <div class="alert alert-danger" *ngIf="ShippingAddress.touched && ShippingAddress.invalid">
+                <div *ngIf="ShippingAddress.errors?.required">Shipping address is required...</div>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="">Skills</label>
+            <input type="text" class="form-control" #skill (keyup.enter)="addSkills(skill)">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let skill of Skills.controls;let i=index">
+                    {{skill.value}}
+                    <a class="btn btn-danger" (click)="removeSkills(i)">X</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+
+</form>

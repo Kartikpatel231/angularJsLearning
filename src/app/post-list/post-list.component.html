@@ -1,0 +1,32 @@
+<p>post-list works!</p>
+<h1>Post List component</h1>
+<input type="text" value="One way data binding">
+<input type="text" [value]="name">
+{{fromPostParent}}
+<div class="container">
+    <h1>
+        {{title | lowercase}}
+        {{title | uppercase}}
+         {{numb}}
+         {{numb | number}}
+         {{numbe | number: '1.1-1'}}
+         {{price | currency:"INR":false:'2.1-1'}}
+         {{today | date:'short' }}
+    </h1>
+    <p>{{postObject | json}}</p>
+    <h4>{{0.54| percent}}</h4>
+    <h6>{{postsArray | slice: 2:5}}</h6>
+</div>
+<div>
+    <h1>{{userDetails.name | append}}</h1>
+</div>
+<p>{{dumyText | uppercase}}</p>
+<div>
+    <button (click)="addNewData()">Add New Post</button>
+    <ul>
+        <h1>hi hariom</h1>
+        <li *ngFor="let post of postList">
+            {{post.PostTitle}}
+        </li>
+    </ul>
+</div>
